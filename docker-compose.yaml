@@ -66,12 +66,21 @@ services:
     ports:
     - 9090:9090
     volumes:
-    - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+    - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - test
     depends_on:
       - ca_org1
       - ca_org2
       - ca_orderer
+
+  grafana: 
+    container_name: grafana
+    image: "grafana/grafana:latest"
+    networks: 
+      - test
+    ports: 
+      - "3000:3000"
+
     
 
