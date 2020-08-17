@@ -382,7 +382,7 @@ createCertificateForOrderer() {
   echo "## Generate the orderer msp"
   echo
    
-  fabric-ca-client enroll -u https://orderer:ordererpw@localhost:9054 --caname ca-orderer -M ${PWD}/crypto-config-ca/ordererOrganizations/example.com/orderers/orderer3.pharma.com/msp --csr.hosts orderer3.pharma.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
+  fabric-ca-client enroll -u https://orderer:ordererpw@localhost:9054 --caname ca-orderer -M ${PWD}/crypto-config-ca/ordererOrganizations/pharma.com/orderers/orderer3.pharma.com/msp --csr.hosts orderer3.pharma.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
    
 
   cp ${PWD}/crypto-config-ca/ordererOrganizations/pharma.com/msp/config.yaml ${PWD}/crypto-config-ca/ordererOrganizations/pharma.com/orderers/orderer3.pharma.com/msp/config.yaml
@@ -404,16 +404,16 @@ createCertificateForOrderer() {
   # ---------------------------------------------------------------------------
 
   mkdir -p crypto-config-ca/ordererOrganizations/pharma.com/users
-  mkdir -p crypto-config-ca/ordererOrganizations/pharma.com/users/Admin@example.com
+  mkdir -p crypto-config-ca/ordererOrganizations/pharma.com/users/Admin@pharma.com
 
   echo
   echo "## Generate the admin msp"
   echo
    
-  fabric-ca-client enroll -u https://ordererAdmin:ordererAdminpw@localhost:9054 --caname ca-orderer -M ${PWD}/crypto-config-ca/ordererOrganizations/pharma.com/users/Admin@example.com/msp --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
+  fabric-ca-client enroll -u https://ordererAdmin:ordererAdminpw@localhost:9054 --caname ca-orderer -M ${PWD}/crypto-config-ca/ordererOrganizations/pharma.com/users/Admin@pharma.com/msp --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
    
 
-  cp ${PWD}/crypto-config-ca/ordererOrganizations/pharma.com/msp/config.yaml ${PWD}/crypto-config-ca/ordererOrganizations/pharma.com/users/Admin@example.com/msp/config.yaml
+  cp ${PWD}/crypto-config-ca/ordererOrganizations/pharma.com/msp/config.yaml ${PWD}/crypto-config-ca/ordererOrganizations/pharma.com/users/Admin@pharma.com/msp/config.yaml
 
 }
 
@@ -422,5 +422,5 @@ sudo rm -rf crypto-config-ca/*
 #sudo rm -rf fabric-ca/*
 createCertificatesForManufacturer
 #createCertificateForOrg2
-#createCertificateForOrderer
+createCertificateForOrderer
 
